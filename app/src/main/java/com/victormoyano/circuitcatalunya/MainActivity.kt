@@ -6,7 +6,7 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
-    private val SPLASH_TIME_OUT: Long = 5000 // 5 segundos
+    private val SPLASH_TIME_OUT: Long = 3500 // 3,5 segundos
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
