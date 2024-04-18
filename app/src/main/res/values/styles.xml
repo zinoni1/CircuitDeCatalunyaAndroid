@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Button">
+    </style>
+    <style name="Buttons" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">#EF2426</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <corners name="android:radius="> 8dp </corners>
+        <item name="android:layout_width">201dp</item>
+        <item name="android:layout_height">42dp</item>
+    </style>
+</resources>
