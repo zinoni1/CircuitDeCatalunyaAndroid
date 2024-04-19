@@ -24,6 +24,9 @@
         <activity android:name=".LoginActivity"/>
         <activity android:name=".RecuperarContrasenya"/>
         <activity android:name=".HomeActivity"/>
+        <activity android:name=".ConfiguracioActivity"/>
+        <activity android:name=".StatsActivity"/>
+        <activity android:name=".ReparacionsActivity"/>
     </application>
 
 </manifest>
