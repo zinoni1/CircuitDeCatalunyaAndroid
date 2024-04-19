@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/notificacions"
+        android:icon="@drawable/campana"
+        app:showAsAction="ifRoom"
+        tools:ignore="MenuTitle" />
+
+    <item
+        android:id="@+id/configuracio"
+        android:icon="@drawable/configuracio"
+        app:showAsAction="ifRoom"
+        tools:ignore="MenuTitle" />
+    <item
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Home" />
+    <item
+        android:id="@+id/chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Chat" />
+    <item
+        android:id="@+id/calendari"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Calendari" />
+    <item
+        android:id="@+id/proveidors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Proveidors" />
+    <item
+        android:id="@+id/configuracio2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Configuració" />
+    <item
+        android:id="@+id/cerrarSession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Tancar Sessió" />
+
+</menu>
