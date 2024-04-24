@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.victormoyano.circuitcatalunya.ui.MainViewModel
 
 class MainActivity : AppCompatActivity() {
-    private val SPLASH_TIME_OUT: Long = 3500 // 3,5 segundos
+    private val SPLASH_TIME_OUT: Long = 3000 // 3 segundos
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
