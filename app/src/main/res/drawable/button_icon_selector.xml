@@ -1,0 +1,8 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <bitmap android:src="@android:drawable/ic_dialog_alert" android:tint="#FFFFFF" />
+    </item>
+    <item>
+        <bitmap android:src="@android:drawable/ic_dialog_alert" android:tint="#EF2426" />
+    </item>
+</selector>
