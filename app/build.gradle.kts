@@ -6,7 +6,10 @@ plugins {
 android {
     namespace = "com.victormoyano.circuitcatalunya"
     compileSdk = 34
-
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
     defaultConfig {
         applicationId = "com.victormoyano.circuitcatalunya"
         minSdk = 24
@@ -48,5 +51,6 @@ dependencies {
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-
+    implementation ("androidx.activity:activity-ktx:1.9.0")
+    implementation ("androidx.fragment:fragment-ktx:1.6.2")
 }

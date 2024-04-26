@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         // Creamos un Handler para manejar el retraso
         Handler().postDelayed({
             // Creamos un Intent para abrir LoginActivity
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, Averia_sinlogin::class.java)
             startActivity(intent)
             // No necesitamos finalizar la MainActivity, para que el usuario pueda regresar a ella
         }, SPLASH_TIME_OUT)

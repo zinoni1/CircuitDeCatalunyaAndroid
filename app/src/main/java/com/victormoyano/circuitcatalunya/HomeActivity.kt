@@ -1,37 +1,52 @@
 package com.victormoyano.circuitcatalunya
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.viewpager2.widget.ViewPager2
+import com.victormoyano.circuitcatalunya.databinding.HomeBinding
+import com.google.android.material.tabs.TabLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.victormoyano.circuitcatalunya.adapters.ReparacionesAdapter
 
+
 class HomeActivity : AppCompatActivity() {
+    private lateinit var binding: HomeBinding
+    private lateinit var pagerAdapter: HomeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.home)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        binding = HomeBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        // Obtener una referencia al RecyclerView desde el layout de HomeActivity
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
-        // Configurar un LinearLayoutManager para mostrar los elementos en una lista vertical
-        val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
 
-        // Crear una lista de datos ficticia (puedes reemplazarla con tu propia lista)
-        val dataList = listOf("Reparación 1", "Reparación 2", "Reparación 3")
+        pagerAdapter = HomeAdapter(this)
+        binding.viewPager.adapter = pagerAdapter
 
-        // Crear una instancia del adaptador ReparacionesAdapter y configurarla en el RecyclerView
-        val adapter = ReparacionesAdapter(this, dataList)
-        recyclerView.adapter = adapter
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                binding.viewPager.currentItem = tab!!.position
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
+
+        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(posicio: Int) {
+                super.onPageSelected(posicio)
+                binding.tabLayout.getTabAt(posicio)!!.select()
+            }
+        })
+        binding.viewPager.currentItem = 0
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -39,16 +54,5 @@ class HomeActivity : AppCompatActivity() {
         inflater.inflate(R.menu.menu_toolbar, menu)
         return true
     }
-
-  /*  override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.configuracio -> {
-                val intent = Intent(this, ConfiguracioActivity::class.java)
-                startActivity(intent)
-                finish()
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }*/
 }
+

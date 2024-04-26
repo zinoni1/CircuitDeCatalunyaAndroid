@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/imageViewBackgroundTop"
         android:layout_width="wrap_content"
-        android:layout_height="479dp"
+        android:layout_height="500dp"
         android:layout_marginBottom="348dp"
         android:scaleType="centerCrop"
         android:src="@drawable/login2"
@@ -82,6 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Iniciar Sesión"
+            android:backgroundTint="@color/red"
             android:textColor="@android:color/white"
             app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
             app:layout_constraintStart_toStartOf="parent"
