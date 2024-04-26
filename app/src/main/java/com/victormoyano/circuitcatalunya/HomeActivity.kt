@@ -8,6 +8,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.viewpager2.widget.ViewPager2
 import com.victormoyano.circuitcatalunya.databinding.HomeBinding
 import com.google.android.material.tabs.TabLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.victormoyano.circuitcatalunya.adapters.ReparacionesAdapter
+
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: HomeBinding
@@ -22,6 +26,7 @@ class HomeActivity : AppCompatActivity() {
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
 
         pagerAdapter = HomeAdapter(this)
         binding.viewPager.adapter = pagerAdapter
@@ -41,6 +46,7 @@ class HomeActivity : AppCompatActivity() {
             }
         })
         binding.viewPager.currentItem = 0
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
