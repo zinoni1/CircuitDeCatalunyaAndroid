@@ -76,10 +76,9 @@
                 android:icon="@drawable/chatselected" />
         </com.google.android.material.tabs.TabLayout>
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/view_pager"
-            android:layout_below="@+id/tab_layout"/>
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="725.5dp"
+        android:layout_height="725.5dp" />
 
     </RelativeLayout>
