@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
+
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
     <application
-
+        
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -29,8 +33,9 @@
         <activity android:name=".RecuperarContrasenya"/>
         <activity android:name=".HomeActivity"/>
         <activity android:name=".ConfiguracioActivity"/>
-        <activity android:name=".StatsActivity"/>
         <activity android:name=".ReparacionsActivity"/>
+        <activity android:name=".Averia_sinlogin"/>
+
     </application>
 
 </manifest>
