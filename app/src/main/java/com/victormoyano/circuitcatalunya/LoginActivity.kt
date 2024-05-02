@@ -9,8 +9,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.victormoyano.circuitcatalunya.api.RetrofitConnection
-import kotlinx.coroutines.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -28,11 +26,18 @@ olvidado = findViewById(R.id.forgotPasswordTextView)
             startActivity(intent)
         }
 
+
         emailEditText = findViewById(R.id.usernameEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
         loginButton = findViewById(R.id.loginButton)
 
         loginButton.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+        /*loginButton.setOnClickListener {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
 
@@ -70,7 +75,8 @@ olvidado = findViewById(R.id.forgotPasswordTextView)
                 mostrarToastPersonalizado(this, "Introdueix les dades")
             }
         }
-    }
+    }*/
+
 
 
 
