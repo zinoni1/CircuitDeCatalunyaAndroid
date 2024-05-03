@@ -26,9 +26,9 @@ class HomeFragment : Fragment() {
             Reparacion("SEGÜENT REPARACIÓN", "ZONA: CAMBI DE TECPRO", "MANTENIMIENTO PREVENTIVO", "POSPOSAR", "ASSIGNAR", R.drawable.info),
             Reparacion("SEGÜENT REPARACIÓN", "ZONA: CAMBI DE TECPRO", "MANTENIMIENTO PREVENTIVO", "POSPOSAR", "ASSIGNAR", R.drawable.info),
             Reparacion("SEGÜENT REPARACIÓN", "ZONA: CAMBI DE TECPRO", "MANTENIMIENTO PREVENTIVO", "POSPOSAR", "ASSIGNAR", R.drawable.info),
-                    Reparacion("SEGÜENT REPARACIÓN", "ZONA: CAMBI DE TECPRO", "MANTENIMIENTO PREVENTIVO", "POSPOSAR", "ASSIGNAR", R.drawable.info),
-        Reparacion("SEGÜENT REPARACIÓN", "ZONA: CAMBI DE TECPRO", "MANTENIMIENTO PREVENTIVO", "POSPOSAR", "ASSIGNAR", R.drawable.info),
-        Reparacion("SEGÜENT REPARACIÓN", "ZONA: CAMBI DE TECPRO", "MANTENIMIENTO PREVENTIVO", "POSPOSAR", "ASSIGNAR", R.drawable.info)
+            Reparacion("SEGÜENT REPARACIÓN", "ZONA: CAMBI DE TECPRO", "MANTENIMIENTO PREVENTIVO", "POSPOSAR", "ASSIGNAR", R.drawable.info),
+            Reparacion("SEGÜENT REPARACIÓN", "ZONA: CAMBI DE TECPRO", "MANTENIMIENTO PREVENTIVO", "POSPOSAR", "ASSIGNAR", R.drawable.info),
+            Reparacion("SEGÜENT REPARACIÓN", "ZONA: CAMBI DE TECPRO", "MANTENIMIENTO PREVENTIVO", "POSPOSAR", "ASSIGNAR", R.drawable.info)
 
             // Add more Reparacion objects here...
         )

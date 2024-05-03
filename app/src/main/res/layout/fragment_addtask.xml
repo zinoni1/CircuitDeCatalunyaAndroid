@@ -11,9 +11,9 @@
         android:id="@+id/imageButton"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:contentDescription="Imagen"
         android:scaleType="fitCenter"
-        app:srcCompat="@android:drawable/ic_menu_report_image"
-        android:contentDescription="Imagen" />
+        app:srcCompat="@android:drawable/ic_menu_report_image" />
 
     <EditText
         android:id="@+id/problem"
@@ -46,6 +46,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:srcCompat="@tools:sample/avatars"
+        android:layout_marginTop="30dp"/>
 
 
 </LinearLayout>
