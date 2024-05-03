@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         var mainviewmodel = MainViewModel()
         mainviewmodel.listUsers()
+        mainviewmodel.listAverias()
         // Creamos un Handler para manejar el retraso
         Handler().postDelayed({
             // Creamos un Intent para abrir LoginActivity
