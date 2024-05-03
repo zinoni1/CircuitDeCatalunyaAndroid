@@ -42,19 +42,10 @@
         android:layout_marginTop="16dp" />
 
     <Spinner
-        android:id="@+id/AssignWorker"
-        android:layout_width="0dp"
+        android:id="@+id/Asignar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_weight="1" />
-
-    <View
-        android:id="@+id/colorBar"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_weight="1"
-        android:background="@android:color/holo_blue_light" />
+        android:layout_marginTop="16dp" />
 
 
 </LinearLayout>
