@@ -38,6 +38,27 @@ class MainViewModel: ViewModel() {
             }
         }
     }
+
+    fun LlistaUsuaris() {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val resposta = RetrofitConnection.service.getUsers()// URL del endpoint listUsers
+                if (resposta.isSuccessful) {
+                    val usuaris = resposta.body()
+                    // Imprimir el resultado en la consola
+                    usuaris?.forEach { usuari ->
+                        println(" Email: ${usuari.name}")
+                    }
+                } else {
+                    // Manejar el error de la solicitud
+                    // Por ejemplo: Log.e("MainViewModel", "Error: ${resposta.code()}")
+                }
+            } catch (e: Exception) {
+                // Manejar errores de red o de otra índole
+                // Por ejemplo: Log.e("MainViewModel", "Error: ${e.message}")
+            }
+        }
+    }
     fun listAverias() {
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -57,4 +78,87 @@ class MainViewModel: ViewModel() {
         }
     }
 
+    fun listCargos() {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = RetrofitConnection.service.getCargos()// URL del endpoint listUsers
+                if (response.isSuccessful) {
+                    val cargos = response.body()
+                    // Imprimir el resultado en la consola
+                    cargos?.forEach { cargo ->
+                        println(" Cargo: ${cargo.nombre}")
+                    }
+                } else {
+                    // Manejar el error de la solicitud
+                    // Por ejemplo: Log.e("MainViewModel", "Error: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                // Manejar errores de red o de otra índole
+                // Por ejemplo: Log.e("MainViewModel", "Error: ${e.message}")
+            }
+        }
+    }
+
+    fun listZonas() {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = RetrofitConnection.service.getZonas()// URL del endpoint listUsers
+                if (response.isSuccessful) {
+                    val zonas = response.body()
+                    // Imprimir el resultado en la consola
+                    zonas?.forEach { zona ->
+                        println(" Zona: ${zona.nombre}")
+                    }
+                } else {
+                    // Manejar el error de la solicitud
+                    // Por ejemplo: Log.e("MainViewModel", "Error: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                // Manejar errores de red o de otra índole
+                // Por ejemplo: Log.e("MainViewModel", "Error: ${e.message}")
+            }
+        }
+    }
+
+    fun listSector() {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = RetrofitConnection.service.getSector()// URL del endpoint listUsers
+                if (response.isSuccessful) {
+                    val sectores = response.body()
+                    // Imprimir el resultado en la consola
+                    sectores?.forEach { sector ->
+                        println(" Sector: ${sector.nombre}")
+                    }
+                } else {
+                    // Manejar el error de la solicitud
+                    // Por ejemplo: Log.e("MainViewModel", "Error: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                // Manejar errores de red o de otra índole
+                // Por ejemplo: Log.e("MainViewModel", "Error: ${e.message}")
+            }
+        }
+    }
+
+    fun listTipoAverias() {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = RetrofitConnection.service.getTipoAverias()// URL del endpoint listUsers
+                if (response.isSuccessful) {
+                    val tipoAverias = response.body()
+                    // Imprimir el resultado en la consola
+                    tipoAverias?.forEach { tipoAveria ->
+                        println(" Tipo de avería: ${tipoAveria.nombre}")
+                    }
+                } else {
+                    // Manejar el error de la solicitud
+                    // Por ejemplo: Log.e("MainViewModel", "Error: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                // Manejar errores de red o de otra índole
+                // Por ejemplo: Log.e("MainViewModel", "Error: ${e.message}")
+            }
+        }
+    }
 }

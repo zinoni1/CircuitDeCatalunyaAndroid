@@ -15,6 +15,9 @@ class MainActivity : AppCompatActivity() {
         var mainviewmodel = MainViewModel()
         mainviewmodel.listUsers()
         mainviewmodel.listAverias()
+        mainviewmodel.listCargos()
+        mainviewmodel.listZonas()
+        mainviewmodel.listSector()
         // Creamos un Handler para manejar el retraso
         Handler().postDelayed({
             // Creamos un Intent para abrir LoginActivity
