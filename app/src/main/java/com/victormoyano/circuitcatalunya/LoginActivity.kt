@@ -55,45 +55,25 @@ olvidado = findViewById(R.id.forgotPasswordTextView)
                                 }
                             } else {
                                 withContext(Dispatchers.Main) {
-                                    mostrarToastPersonalizado(this@LoginActivity, "Credencials incorrectes")
+                                    MainActivity().mostrarToastPersonalizado(this@LoginActivity, "Credencials incorrectes")
                                 }
                             }
                         } else {
                             withContext(Dispatchers.Main) {
-                                mostrarToastPersonalizado(this@LoginActivity, "Error de connexió")
+                                MainActivity().mostrarToastPersonalizado(this@LoginActivity, "Error de connexió")
                             }
                         }
 
 
                     } catch (e: Exception) {
                         withContext(Dispatchers.Main) {
-                            mostrarToastPersonalizado(this@LoginActivity, "Error de connexió")
+                            MainActivity().mostrarToastPersonalizado(this@LoginActivity, "Error de connexió")
                         }
                     }
                 }
             } else {
-                mostrarToastPersonalizado(this, "Introdueix les dades")
+                MainActivity().mostrarToastPersonalizado(this, "Introdueix les dades")
             }
         }
     }*/
-
-
-
-
-    fun mostrarToastPersonalizado(context: Context, mensaje: String) {
-        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val layout = inflater.inflate(R.layout.toast, null)
-
-        // Encuentra el TextView en el diseño del Toast
-        val textView = layout.findViewById<TextView>(R.id.title)
-        // Establece el texto deseado
-        textView.text = mensaje
-
-        // Crea y muestra el Toast personalizado
-        val toast = Toast(context)
-        toast.duration = Toast.LENGTH_SHORT
-        toast.view = layout
-        toast.show()
-    }
-
 }

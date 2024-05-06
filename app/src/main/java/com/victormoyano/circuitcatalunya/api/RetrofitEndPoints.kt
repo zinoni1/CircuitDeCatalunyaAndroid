@@ -41,5 +41,8 @@ interface RetrofitEndPoints {
     @GET("sector-android")
     suspend fun getSector(): Response<List<Sectores>>
 
+    @POST("add-averia-android")
+    suspend fun addAveria(@Body averia: Averias): Response<Averias>
+
 }
 
