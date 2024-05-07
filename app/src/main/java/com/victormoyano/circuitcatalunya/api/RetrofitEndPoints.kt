@@ -1,5 +1,6 @@
 package com.victormoyano.circuitcatalunya.api
 
+import android.media.Image
 import com.victormoyano.circuitcatalunya.models.Averias
 import com.victormoyano.circuitcatalunya.models.Cargos
 import com.victormoyano.circuitcatalunya.models.Sectores
@@ -7,6 +8,7 @@ import com.victormoyano.circuitcatalunya.models.TipoAverias
 import com.victormoyano.circuitcatalunya.models.Users
 import com.victormoyano.circuitcatalunya.models.UsersLista
 import com.victormoyano.circuitcatalunya.models.Zonas
+import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -24,7 +26,7 @@ interface RetrofitEndPoints {
     suspend fun verifyCredentials(
         @Path("email") email: String,
         @Path("password") password: String
-    ): Response<Boolean>
+    ): Number
 
     @GET("tipo-averias-android")
     suspend fun getTipoAverias(): Response<List<TipoAverias>>
@@ -43,6 +45,10 @@ interface RetrofitEndPoints {
 
     @POST("add-averia-android")
     suspend fun addAveria(@Body averia: Averias): Response<Averias>
+
+    @Multipart
+    @POST("upload-image")
+    suspend fun uploadImage(@Part image: MultipartBody.Part): Response<Any>
 
 }
 
