@@ -60,6 +60,10 @@ class addtaskFragment : Fragment() {
     private lateinit var ButtonEnviar: Button
     private val REQUEST_IMAGE_CAPTURE = 1
     private val CAMERA_PERMISSION_CODE = 101
+    private val idLogat: Int = HomeActivity.IdLogatHolder.getIdLogat()
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -178,6 +182,7 @@ class addtaskFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        Log.d("addtaskFragment", idLogat.toString())
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             imageButton.setImageBitmap(imageBitmap)
@@ -202,7 +207,7 @@ class addtaskFragment : Fragment() {
                         data_fin = null,
                         prioridad = prioridad,
                         imagen = imageName,
-                        creator_id = 1,
+                        creator_id = idLogat,
                         tecnico_asignado_id = asignar.id,
                         asignador = 1,
                         zona_id = zona.id,

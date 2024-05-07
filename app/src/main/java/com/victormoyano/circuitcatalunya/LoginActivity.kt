@@ -52,10 +52,11 @@ olvidado = findViewById(R.id.forgotPasswordTextView)
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
                         val response = RetrofitConnection.service.verifyCredentials(email, password)
-
+                        val idLogat = response.toInt()
                         if (response != 0) {
+
                                 withContext(Dispatchers.Main) {
-                                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                                    val intent = HomeActivity.newIntent(this@LoginActivity, idLogat)
                                     startActivity(intent)
                                     finish()
                                 }
