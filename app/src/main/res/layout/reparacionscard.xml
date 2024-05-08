@@ -24,8 +24,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/redRectangle"
+        <ImageView
+            android:id="@+id/image"
             android:layout_width="100dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
@@ -44,7 +44,7 @@
             android:text="ZONA: CAMBI DE TECPRO"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/redRectangle"
+            app:layout_constraintStart_toEndOf="@+id/image"
             app:layout_constraintTop_toBottomOf="@+id/topText1" />
 
         <TextView
@@ -55,7 +55,7 @@
             android:layout_marginTop="4dp"
             android:text="MANTENIMIENTO PREVENTIVO"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/redRectangle"
+            app:layout_constraintStart_toEndOf="@id/image"
             app:layout_constraintTop_toBottomOf="@id/titleTextView" />
 
         <LinearLayout

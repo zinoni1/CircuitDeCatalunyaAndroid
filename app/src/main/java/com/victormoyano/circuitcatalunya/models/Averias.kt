@@ -14,7 +14,8 @@ data class Averias(
     var tecnico_asignado_id: Int = 0,
     var asignador: Int = 0,
     var zona_id: Int = 0,
-    var tipo_averias_id: Int = 0
+    var tipo_averias_id: Int = 0,
+    var image_url: String = ""
 )
 
 
