@@ -209,7 +209,6 @@ class addtaskFragment : Fragment() {
                         imagen = imageName,
                         creator_id = idLogat,
                         tecnico_asignado_id = asignar.id,
-                        asignador = 1,
                         zona_id = zona.id,
                         tipo_averias_id = tipusManteniment.id
                     )
