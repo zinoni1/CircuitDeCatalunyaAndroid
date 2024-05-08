@@ -36,12 +36,30 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
+            android:id="@+id/zonaTextView"
+            android:layout_width="218dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="149dp"
+            android:layout_marginBottom="4dp"
+            android:text="ZONA: CA"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/titleTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toBottomOf="@+id/topText1"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
             android:id="@+id/titleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="218dp"
+            android:layout_height="26dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
-            android:text="ZONA: CAMBI DE TECPRO"
+            android:text="Incidencia: CAMBI"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/image"
@@ -49,13 +67,15 @@
 
         <TextView
             android:id="@+id/subtitleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_width="218dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="4dp"
+            android:layout_marginEnd="15dp"
             android:text="MANTENIMIENTO PREVENTIVO"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/image"
             app:layout_constraintTop_toBottomOf="@id/titleTextView" />
 
         <LinearLayout

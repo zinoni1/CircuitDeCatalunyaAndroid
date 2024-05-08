@@ -10,6 +10,11 @@ import com.victormoyano.circuitcatalunya.R
 import com.victormoyano.circuitcatalunya.models.Averias
 import retrofit2.Response
 import com.squareup.picasso.Picasso;
+import com.victormoyano.circuitcatalunya.api.RetrofitConnection
+import com.victormoyano.circuitcatalunya.models.Zonas
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class ReparacionesAdapter(private val context: Context, val response: Response<List<Averias>>) :
@@ -22,6 +27,8 @@ class ReparacionesAdapter(private val context: Context, val response: Response<L
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = response.body()?.get(position)
+        val zona = response.body()?.get(position)?.zona_id
+
         data?.let { holder.bindData(it) }
     }
 
@@ -31,10 +38,29 @@ class ReparacionesAdapter(private val context: Context, val response: Response<L
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
+        private val descriptionTextView: TextView = itemView.findViewById(R.id.subtitleTextView)
+        private val zonaTextView: TextView = itemView.findViewById(R.id.zonaTextView)
         private val image: ImageView = itemView.findViewById(R.id.image)
+
+
+
         fun bindData(data: Averias) {
-            titleTextView.text = data.descripcion
+            CoroutineScope(Dispatchers.Main).launch {
+                val zonas: Response<List<Zonas>> = RetrofitConnection.service.getZonas()
+                val iterator = zonas.body()!!.iterator()
+                while (iterator.hasNext()) {
+                    val zona = iterator.next()
+                    if (zona.id == data.zona_id){
+                        zonaTextView.text = "Zona: "+ zona.nombre
+                        break // Opcional: si solo quieres encontrar la primera coincidencia y luego salir del bucle
+                    }
+                }
+            }
+
+            titleTextView.text = data.Incidencia
+            descriptionTextView.text = "Descripció: "+ data.descripcion
             Picasso.get().load(data.image_url).into(image)
+
         }
     }
 }
