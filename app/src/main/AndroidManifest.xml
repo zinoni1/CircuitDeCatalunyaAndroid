@@ -33,8 +33,8 @@
         <activity android:name=".RecuperarContrasenya"/>
         <activity android:name=".HomeActivity"/>
         <activity android:name=".ConfiguracioActivity"/>
-        <activity android:name=".ReparacionsActivity"/>
         <activity android:name=".Averia_sinlogin"/>
+        <activity android:name=".InfoAveria"/>
 
     </application>
 
