@@ -1,6 +1,7 @@
 package com.victormoyano.circuitcatalunya
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,8 +25,9 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         CoroutineScope(Dispatchers.Main).launch {
-            val averias = RetrofitConnection.service.getAverias()
 
+            val averias = RetrofitConnection.service.getAverias()
+            Log.d("Averias", averias.body()!!.toString())
 
         viewManager = LinearLayoutManager(context)
         viewAdapter = ReparacionesAdapter(requireContext(), averias)
@@ -37,5 +39,16 @@ class HomeFragment : Fragment() {
         }
     }
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        CoroutineScope(Dispatchers.Main).launch {
+            val averias = RetrofitConnection.service.getAverias()
+            Log.d("Averias 2", averias.body()!!.toString())
+            viewAdapter.response = averias
+            viewAdapter.notifyDataSetChanged()
+
+        }
     }
 }

@@ -61,7 +61,7 @@ class addtaskFragment : Fragment() {
     private val REQUEST_IMAGE_CAPTURE = 1
     private val CAMERA_PERMISSION_CODE = 101
     private val idLogat: Int = HomeActivity.IdLogatHolder.getIdLogat()
-
+    var isImageCaptured = false
 
 
 
@@ -87,6 +87,58 @@ class addtaskFragment : Fragment() {
                 dispatchTakePictureIntent()
             } else {
                 ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_CODE)
+            }
+        }
+
+        if(isImageCaptured != true) {
+            ButtonEnviar.setOnClickListener() {
+                val problem = problemEditText.text.toString()
+                val description = descriptionEditText.text.toString()
+                val tipusManteniment = tipusMantenimentSpinner.selectedItem as TipoAverias
+                val zona = zonesSpinner.selectedItem as Zonas
+                val asignar = asignarSpinner.selectedItem as UsersLista
+                val prioridad = PrioritatSpinner.selectedItem as String
+                val fecha_hoy = java.time.LocalDate.now().toString()
+                val averia = Averias(
+                    Incidencia = problem,
+                    descripcion = description,
+                    data_inicio = fecha_hoy,
+                    data_fin = null,
+                    prioridad = prioridad,
+                    imagen = null,
+                    creator_id = idLogat,
+                    tecnico_asignado_id = asignar.id,
+                    zona_id = zona.id,
+                    tipo_averias_id = tipusManteniment.id
+                )
+                CoroutineScope(Dispatchers.Main).launch {
+                    try {
+                        val response = RetrofitConnection.service.addAveria(averia)
+                        if (response.isSuccessful) {
+                            // Mostrar un toast de confirmación
+                            MainActivity().mostrarToastPersonalizado(
+                                requireContext(),
+                                "Tarea añadida correctamente"
+                            )
+
+                            // Limpiar los campos de entrada
+                            problemEditText.text.clear()
+                            descriptionEditText.text.clear()
+                        } else {
+                            // Mostrar un toast de error
+                            MainActivity().mostrarToastPersonalizado(
+                                requireContext(),
+                                "Error al añadir la tarea"
+                            )
+                        }
+                    } catch (e: Exception) {
+                        // Mostrar un toast de error si hay una excepción
+                        MainActivity().mostrarToastPersonalizado(
+                            requireContext(),
+                            "Error al añadir la tarea"
+                        )
+                    }
+                }
             }
         }
 
@@ -186,11 +238,11 @@ class addtaskFragment : Fragment() {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             imageButton.setImageBitmap(imageBitmap)
-
+            isImageCaptured = true
             // Guardar la imagen con un nombre único
             val imageName = "image_${System.currentTimeMillis()}.jpg"
             val imagePath = saveImageToInternalStorage(imageBitmap, imageName)
-            //pon un delayed al button enviar
+
             ButtonEnviar.setOnClickListener {
                 sendImageToLaravel(imagePath, imageName);
                     val problem = problemEditText.text.toString()
@@ -221,6 +273,7 @@ class addtaskFragment : Fragment() {
                                 // Limpiar los campos de entrada
                                 problemEditText.text.clear()
                                 descriptionEditText.text.clear()
+                                imageButton.setImageDrawable(null)
                             } else {
                                 // Mostrar un toast de error
                                 MainActivity().mostrarToastPersonalizado(requireContext(), "Error al añadir la tarea")
