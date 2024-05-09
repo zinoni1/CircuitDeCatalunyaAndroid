@@ -17,7 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class ReparacionesAdapter(private val context: Context, val response: Response<List<Averias>>) :
+class ReparacionesAdapter(private val context: Context, var response: Response<List<Averias>>) :
     RecyclerView.Adapter<ReparacionesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -43,22 +43,21 @@ class ReparacionesAdapter(private val context: Context, val response: Response<L
         private val image: ImageView = itemView.findViewById(R.id.image)
 
 
-
         fun bindData(data: Averias) {
             CoroutineScope(Dispatchers.Main).launch {
                 val zonas: Response<List<Zonas>> = RetrofitConnection.service.getZonas()
                 val iterator = zonas.body()!!.iterator()
                 while (iterator.hasNext()) {
                     val zona = iterator.next()
-                    if (zona.id == data.zona_id){
-                        zonaTextView.text = "Zona: "+ zona.nombre
+                    if (zona.id == data.zona_id) {
+                        zonaTextView.text = "Zona: " + zona.nombre
                         break // Opcional: si solo quieres encontrar la primera coincidencia y luego salir del bucle
                     }
                 }
             }
 
             titleTextView.text = data.Incidencia
-            descriptionTextView.text = "Descripció: "+ data.descripcion
+            descriptionTextView.text = "Descripció: " + data.descripcion
             Picasso.get().load(data.image_url).into(image)
 
         }
