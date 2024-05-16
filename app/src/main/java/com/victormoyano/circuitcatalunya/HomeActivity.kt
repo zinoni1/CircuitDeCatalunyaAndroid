@@ -3,14 +3,14 @@ package com.victormoyano.circuitcatalunya
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.viewpager2.widget.ViewPager2
-import com.victormoyano.circuitcatalunya.databinding.HomeBinding
 import com.google.android.material.tabs.TabLayout
+import com.victormoyano.circuitcatalunya.databinding.HomeBinding
 
 
 class HomeActivity() : AppCompatActivity() {
@@ -70,6 +70,12 @@ class HomeActivity() : AppCompatActivity() {
         binding.viewPager.currentItem = 0
         fun getIdLogat(): Int {
             return idLogat
+        }
+
+        val infoImageView = findViewById<ImageView>(R.id.info)
+        infoImageView.setOnClickListener {
+            val intent = Intent(this, InfoAveria::class.java)
+            startActivity(intent)
         }
     }
 
