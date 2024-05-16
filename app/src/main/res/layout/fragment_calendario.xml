@@ -15,8 +15,11 @@
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCards"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="320dp" />
+        android:layout_marginTop="320dp"
+        android:layout_below="@id/calendarView"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 </FrameLayout>
