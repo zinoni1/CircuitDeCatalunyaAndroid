@@ -1,6 +1,5 @@
 package com.victormoyano.circuitcatalunya.api
 
-import android.media.Image
 import com.victormoyano.circuitcatalunya.models.Averias
 import com.victormoyano.circuitcatalunya.models.Cargos
 import com.victormoyano.circuitcatalunya.models.Sectores
@@ -9,10 +8,8 @@ import com.victormoyano.circuitcatalunya.models.Users
 import com.victormoyano.circuitcatalunya.models.UsersLista
 import com.victormoyano.circuitcatalunya.models.Zonas
 import okhttp3.MultipartBody
-import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
-import javax.security.auth.callback.Callback
 
 
 interface RetrofitEndPoints {
@@ -34,6 +31,8 @@ interface RetrofitEndPoints {
     @GET("averias-android")
     public suspend fun getAverias(): Response<List<Averias>>
 
+    @GET("averias-android/{id}")
+    suspend fun getAveria(@Path("id") id: Int): Response<Averias>
     @GET("cargos-android")
     suspend fun getCargos(): Response<List<Cargos>>
 
