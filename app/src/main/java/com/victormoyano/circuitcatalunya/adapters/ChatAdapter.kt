@@ -21,7 +21,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-// Modificación en el adaptador para que acepte una lista de grupos
+// Modificación
 class ChatAdapter(private val context: Context, var response: Response<List<Chat>>, private val groups: List<Int>) :
     RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
 
