@@ -1,6 +1,7 @@
 package com.victormoyano.circuitcatalunya
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -28,14 +29,15 @@ class InfoAveria : AppCompatActivity() {
         // Inicializa aquí los demás elementos de la interfaz de usuario
 
         val averiaId = intent.getIntExtra("averiaId", 0)
-
+        Log.d("InfoAveria", "Averia ID: $averiaId")
         CoroutineScope(Dispatchers.Main).launch {
             val response = RetrofitConnection.service.getAveria(averiaId)
             if (response.isSuccessful) {
-                val averia = response.body()
+                val averia = response.body()?.firstOrNull() // Obtiene el primer elemento de la lista, si existe
                 updateUI(averia)
             } else {
-                // Maneja el error
+                // Muestra un mensaje de error
+                Log.e("InfoAveria", "Error12345: ${response.code()}")
             }
         }
     }
@@ -43,7 +45,6 @@ class InfoAveria : AppCompatActivity() {
         averia?.let {
             problemTextView.text = it.Incidencia
             descriptionTextView.text = it.descripcion
-            Picasso.get().load(it.image_url).into(imageView)
             // Actualiza aquí los demás elementos de la interfaz de usuario
         }
     }

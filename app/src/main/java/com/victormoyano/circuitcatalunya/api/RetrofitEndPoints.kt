@@ -2,6 +2,7 @@ package com.victormoyano.circuitcatalunya.api
 
 import com.victormoyano.circuitcatalunya.models.Averias
 import com.victormoyano.circuitcatalunya.models.Cargos
+import com.victormoyano.circuitcatalunya.models.Chat
 import com.victormoyano.circuitcatalunya.models.Sectores
 import com.victormoyano.circuitcatalunya.models.TipoAverias
 import com.victormoyano.circuitcatalunya.models.Users
@@ -32,7 +33,16 @@ interface RetrofitEndPoints {
     public suspend fun getAverias(): Response<List<Averias>>
 
     @GET("averias-android/{id}")
-    suspend fun getAveria(@Path("id") id: Int): Response<Averias>
+    suspend fun getAveria(@Path("id") id: Int): Response<List<Averias>>
+
+    @GET("chats-android/{id}")
+    suspend fun getChats(@Path("id") id: Int): Response<List<Chat>>
+
+    @GET("chats-android/{idGrup}/{id}")
+    suspend fun getChatGrup(
+        @Path("idGrup") idGrup: Int,
+        @Path("id") id: Int): Response<List<Chat>>
+
     @GET("cargos-android")
     suspend fun getCargos(): Response<List<Cargos>>
 
