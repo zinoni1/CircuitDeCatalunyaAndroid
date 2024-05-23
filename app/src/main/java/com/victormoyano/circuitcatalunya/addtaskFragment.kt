@@ -95,7 +95,7 @@ class addtaskFragment : Fragment() {
                 val problem = problemEditText.text.toString()
                 val description = descriptionEditText.text.toString()
                 val tipusManteniment = tipusMantenimentSpinner.selectedItem as TipoAverias
-                val zona = zonesSpinner.selectedItem as Zonas
+                                val zona = zonesSpinner.selectedItem as Zonas
                 val asignar = asignarSpinner.selectedItem as UsersLista
                 val prioridad = PrioritatSpinner.selectedItem as String
                 val fecha_hoy = java.time.LocalDate.now().toString()

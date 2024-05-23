@@ -35,6 +35,7 @@
         <activity android:name=".ConfiguracioActivity"/>
         <activity android:name=".Averia_sinlogin"/>
         <activity android:name=".InfoAveria"/>
+        <activity android:name=".ChatActivity"/>
 
     </application>
 
