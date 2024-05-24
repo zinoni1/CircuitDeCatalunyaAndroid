@@ -47,10 +47,12 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
         CoroutineScope(Dispatchers.Main).launch {
             val averias = RetrofitConnection.service.getAverias()
+
             Log.d("Averias 2", averias.body()!!.toString())
-            viewAdapter.response = averias
+            viewAdapter = ReparacionesAdapter(requireContext(), averias)
             viewAdapter.notifyDataSetChanged()
 
         }

@@ -1,8 +1,10 @@
 package com.victormoyano.circuitcatalunya.api
 
+import com.victormoyano.circuitcatalunya.adapters.ChatMessage
 import com.victormoyano.circuitcatalunya.models.Averias
 import com.victormoyano.circuitcatalunya.models.Cargos
 import com.victormoyano.circuitcatalunya.models.Chat
+import com.victormoyano.circuitcatalunya.models.Grups
 import com.victormoyano.circuitcatalunya.models.Sectores
 import com.victormoyano.circuitcatalunya.models.TipoAverias
 import com.victormoyano.circuitcatalunya.models.Users
@@ -38,11 +40,23 @@ interface RetrofitEndPoints {
     @GET("chats-android/{id}")
     suspend fun getChats(@Path("id") id: Int): Response<List<Chat>>
 
+
+    @GET("grupos-android/{id}")
+    suspend fun getGrups(@Path("id") id: Int): Response<List<Grups>>
+
+    @GET("chats-android/{id}")
+    suspend fun getChatsList(@Path("id") id: Int): List<Chat>
+
+    @GET("grupos-android/{id}")
+    suspend fun getGrupsList(@Path("id") id: Int): List<Grups>
+
     @GET("chats-android/{idGrup}/{id}")
     suspend fun getChatGrup(
         @Path("idGrup") idGrup: Int,
         @Path("id") id: Int): Response<List<Chat>>
 
+    @POST("enviar-miss-android")
+    suspend fun enviarMiss(@Body chat: ChatMessage): Response<Chat>
     @GET("cargos-android")
     suspend fun getCargos(): Response<List<Cargos>>
 

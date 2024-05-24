@@ -6,6 +6,8 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -34,13 +36,39 @@ class ChatActivity : AppCompatActivity() {
         val userId = HomeActivity.IdLogatHolder.getIdLogat() // Obtener el ID del usuario actual
 
         CoroutineScope(Dispatchers.Main).launch {
+
+             val enviarBtn: Button = findViewById(R.id.button3)
+             val missatge: EditText = findViewById(R.id.editTextText)
+
+
             try {
                 val idUser = HomeActivity.IdLogatHolder.getIdLogat()
                 val chatsResponse = RetrofitConnection.service.getChats(idUser)
+                val Rebut = intent.getIntExtra("idRebut", 0)
                 val idGrup = intent.getIntExtra("idGrupo", 0)
                 Log.d("ChatActivity", "idGrup: $idGrup")
                 val GrupsChatResponse = RetrofitConnection.service.getChatGrup(idGrup, idUser)
                 Log.d("ChatActivity", "GrupsChatResponse: $GrupsChatResponse")
+                enviarBtn.setOnClickListener {
+                    val message = missatge.text.toString()
+                    Log.d("ChatActivity", "Missatge no enviat: $message")
+                    if (message.isNotEmpty()) {
+                        val chatMessage = com.victormoyano.circuitcatalunya.adapters.ChatMessage(
+                            id_grupo = idGrup,
+                            id_enviat = idUser,
+                            id_rebut = Rebut,
+                            missatge = message
+                        )
+                        CoroutineScope(Dispatchers.Main).launch {
+                            RetrofitConnection.service.enviarMiss(chatMessage)
+                            Log.d("ChatActivity", "Missatge enviat: $chatMessage")
+                            missatge.text.clear()
+                            // Recargar los mensajes del chat
+                            chatAdapter.notifyDataSetChanged()
+                        }
+                    }
+
+                }
                 if (chatsResponse.isSuccessful && GrupsChatResponse.isSuccessful) {
                     val GrupsChat = GrupsChatResponse.body()
 
@@ -57,7 +85,7 @@ class ChatActivity : AppCompatActivity() {
                         )
                     }
 
-                    chatAdapter = DinsChatAdapter(chatMessages, userId)
+                    chatAdapter = DinsChatAdapter(chatMessages, userId, idGrup)
                     recyclerView.adapter = chatAdapter
                 } else {
                     // Manejar la respuesta fallida, si es necesario
@@ -69,6 +97,4 @@ class ChatActivity : AppCompatActivity() {
         }
     }
 }
-
 data class ChatMessage(val content: String, val senderId: Int, val sentByCurrentUser: Boolean)
-data class Group(val groupId: Int, val lastMessage: String)
