@@ -61,7 +61,7 @@ class ChatActivity : AppCompatActivity() {
                         )
                         CoroutineScope(Dispatchers.Main).launch {
                             RetrofitConnection.service.enviarMiss(chatMessage)
-                            Log.d("ChatActivity", "Missatge enviat: $chatMessage")
+                            Log.d("ChatActivity", "Missatge enviat $chatMessage")
                             missatge.text.clear()
                             // Recargar los mensajes del chat
                             chatAdapter.notifyDataSetChanged()
