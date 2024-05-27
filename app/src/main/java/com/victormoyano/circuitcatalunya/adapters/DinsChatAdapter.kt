@@ -1,23 +1,23 @@
 package com.victormoyano.circuitcatalunya.adapters
 
-import android.content.Intent
-import android.view.Gravity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.victormoyano.circuitcatalunya.ChatMessage
 import com.victormoyano.circuitcatalunya.HomeActivity
-import com.victormoyano.circuitcatalunya.InfoAveria
 import com.victormoyano.circuitcatalunya.R
 import com.victormoyano.circuitcatalunya.api.RetrofitConnection
+import com.victormoyano.circuitcatalunya.models.Chat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DinsChatAdapter(private val chatMessages: List<ChatMessage>, private val userId: Int) :
+class DinsChatAdapter(var chatMessages: List<ChatMessage>, val userId: Int, val IdGrup: Int) :
     RecyclerView.Adapter<DinsChatAdapter.DinsChatViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DinsChatViewHolder {
@@ -27,7 +27,7 @@ class DinsChatAdapter(private val chatMessages: List<ChatMessage>, private val u
         else
             R.layout.message_card
         val view = inflater.inflate(layoutId, parent, false)
-        return DinsChatViewHolder(view)
+        return DinsChatViewHolder(view, IdGrup)
     }
 
     override fun onBindViewHolder(holder: DinsChatViewHolder, position: Int) {
@@ -44,9 +44,10 @@ class DinsChatAdapter(private val chatMessages: List<ChatMessage>, private val u
         return chatMessages.size
     }
 
-    class DinsChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class DinsChatViewHolder(itemView: View, IdGrup: Int) : RecyclerView.ViewHolder(itemView) {
         private val messageTextView: TextView = itemView.findViewById(R.id.missatge)
         private val nom: TextView = itemView.findViewById(R.id.nomPersona)
+        private val idDelGrup = IdGrup
 
         fun bind(chatMessage: ChatMessage) {
             messageTextView.text = chatMessage.content
@@ -60,13 +61,20 @@ class DinsChatAdapter(private val chatMessages: List<ChatMessage>, private val u
                         break
                     }
                 }
-
+                Log.d("ChatActivity", "Nom: ${nom.text}")
             }
         }
     }
-        enum class MessageType {
-            SENT,
-            RECEIVED
-        }
-    }
 
+    enum class MessageType {
+        SENT,
+        RECEIVED
+    }
+}
+
+data class ChatMessage(
+    val id_grupo: Int,
+    val id_enviat: Int,
+    val id_rebut: Int,
+    val missatge: String
+)

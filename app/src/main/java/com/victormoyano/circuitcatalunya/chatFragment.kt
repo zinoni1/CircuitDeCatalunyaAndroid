@@ -12,6 +12,7 @@ import com.victormoyano.circuitcatalunya.adapters.ChatAdapter
 import com.victormoyano.circuitcatalunya.adapters.ReparacionesAdapter
 import com.victormoyano.circuitcatalunya.api.RetrofitConnection
 import com.victormoyano.circuitcatalunya.models.Chat
+import com.victormoyano.circuitcatalunya.models.Grups
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -33,14 +34,11 @@ class chatFragment : Fragment() {
 
         CoroutineScope(Dispatchers.Main).launch {
             val idUser = HomeActivity.IdLogatHolder.getIdLogat()
-            val chats = RetrofitConnection.service.getChats(idUser);
-            val chatsResponse: Response<List<Chat>> = RetrofitConnection.service.getChats(idUser)
-            val chatsss = chatsResponse.body()
-            val uniqueGroupIds = chatsss?.map { it.id_grupo }?.distinct()
-            Log.d("Chats", chats.body()!!.toString())
-            Log.d("Unique", uniqueGroupIds.toString())
+            val chatsResponse: List<Chat> = RetrofitConnection.service.getChatsList(idUser)
+            val grups: List<Grups> = RetrofitConnection.service.getGrupsList(idUser)
+
             viewManager = LinearLayoutManager(context)
-            chatAdapter = ChatAdapter(requireContext(), chats, uniqueGroupIds ?: emptyList())
+            chatAdapter = ChatAdapter(requireContext(), chatsResponse, grups)
 
             recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewChat).apply {
                 setHasFixedSize(true)
@@ -61,10 +59,12 @@ class chatFragment : Fragment() {
         val userId = HomeActivity.IdLogatHolder.getIdLogat()
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                val response: Response<List<Chat>> = RetrofitConnection.service.getChats(userId)
-                if (response.isSuccessful) {
+                val responseUno: Response<List<Chat>> = RetrofitConnection.service.getChats(userId);
+                val response: List<Chat> = RetrofitConnection.service.getChatsList(userId)
+                if (responseUno.isSuccessful) {
+                    val chatResponse1 = responseUno.body()
                     val chatResponse = response // Asignar directamente la respuesta
-                    if (chatResponse.body() != null) {
+                    if (chatResponse1 != null) {
                         // Actualizar el adaptador con los datos obtenidos
                         chatAdapter.response = chatResponse
                         chatAdapter.notifyDataSetChanged()
