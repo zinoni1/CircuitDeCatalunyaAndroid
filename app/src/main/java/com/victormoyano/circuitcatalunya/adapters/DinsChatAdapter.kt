@@ -12,11 +12,12 @@ import com.victormoyano.circuitcatalunya.ChatMessage
 import com.victormoyano.circuitcatalunya.HomeActivity
 import com.victormoyano.circuitcatalunya.R
 import com.victormoyano.circuitcatalunya.api.RetrofitConnection
+import com.victormoyano.circuitcatalunya.models.Chat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DinsChatAdapter(val chatMessages: List<ChatMessage>, val userId: Int, val IdGrup: Int) :
+class DinsChatAdapter(var chatMessages: List<ChatMessage>, val userId: Int, val IdGrup: Int) :
     RecyclerView.Adapter<DinsChatAdapter.DinsChatViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DinsChatViewHolder {
@@ -26,9 +27,7 @@ class DinsChatAdapter(val chatMessages: List<ChatMessage>, val userId: Int, val 
         else
             R.layout.message_card
         val view = inflater.inflate(layoutId, parent, false)
-        val view2 = inflater.inflate(R.layout.chat, parent, false)
-
-        return DinsChatViewHolder(view,view2, IdGrup)
+        return DinsChatViewHolder(view, IdGrup)
     }
 
     override fun onBindViewHolder(holder: DinsChatViewHolder, position: Int) {
@@ -45,17 +44,14 @@ class DinsChatAdapter(val chatMessages: List<ChatMessage>, val userId: Int, val 
         return chatMessages.size
     }
 
-    class DinsChatViewHolder(itemView: View,chatView: View, IdGrup: Int) : RecyclerView.ViewHolder(itemView) {
+    class DinsChatViewHolder(itemView: View, IdGrup: Int) : RecyclerView.ViewHolder(itemView) {
         private val messageTextView: TextView = itemView.findViewById(R.id.missatge)
         private val nom: TextView = itemView.findViewById(R.id.nomPersona)
         private val idDelGrup = IdGrup
 
-
-
         fun bind(chatMessage: ChatMessage) {
             messageTextView.text = chatMessage.content
             CoroutineScope(Dispatchers.Main).launch {
-
                 val users = RetrofitConnection.service.getUsers()
                 val iterator = users.body()!!.iterator()
                 while (iterator.hasNext()) {
@@ -66,15 +62,16 @@ class DinsChatAdapter(val chatMessages: List<ChatMessage>, val userId: Int, val 
                     }
                 }
                 Log.d("ChatActivity", "Nom: ${nom.text}")
-
             }
         }
     }
-        enum class MessageType {
-            SENT,
-            RECEIVED
-        }
+
+    enum class MessageType {
+        SENT,
+        RECEIVED
     }
+}
+
 data class ChatMessage(
     val id_grupo: Int,
     val id_enviat: Int,

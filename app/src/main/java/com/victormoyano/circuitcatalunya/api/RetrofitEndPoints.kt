@@ -55,6 +55,11 @@ interface RetrofitEndPoints {
         @Path("idGrup") idGrup: Int,
         @Path("id") id: Int): Response<List<Chat>>
 
+    @GET("chats-android/{idGrup}/{id}")
+    suspend fun getChatGrupList(
+        @Path("idGrup") idGrup: Int,
+        @Path("id") id: Int): List<Chat>
+
     @POST("enviar-miss-android")
     suspend fun enviarMiss(@Body chat: ChatMessage): Response<Chat>
     @GET("cargos-android")

@@ -25,6 +25,7 @@ class ChatActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var chatAdapter: DinsChatAdapter
+    private val chatMessages = mutableListOf<ChatMessage>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +38,8 @@ class ChatActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.Main).launch {
 
-             val enviarBtn: Button = findViewById(R.id.button3)
-             val missatge: EditText = findViewById(R.id.editTextText)
-
+            val enviarBtn: Button = findViewById(R.id.button3)
+            val missatge: EditText = findViewById(R.id.editTextText)
 
             try {
                 val idUser = HomeActivity.IdLogatHolder.getIdLogat()
@@ -49,6 +49,7 @@ class ChatActivity : AppCompatActivity() {
                 Log.d("ChatActivity", "idGrup: $idGrup")
                 val GrupsChatResponse = RetrofitConnection.service.getChatGrup(idGrup, idUser)
                 Log.d("ChatActivity", "GrupsChatResponse: $GrupsChatResponse")
+
                 enviarBtn.setOnClickListener {
                     val message = missatge.text.toString()
                     Log.d("ChatActivity", "Missatge no enviat: $message")
@@ -63,17 +64,23 @@ class ChatActivity : AppCompatActivity() {
                             RetrofitConnection.service.enviarMiss(chatMessage)
                             Log.d("ChatActivity", "Missatge enviat $chatMessage")
                             missatge.text.clear()
-                            // Recargar los mensajes del chat
-                            chatAdapter.notifyDataSetChanged()
+
+                            // Añadir el mensaje a la lista y notificar al adaptador
+                            chatMessages.add(
+                                ChatMessage(
+                                    message,
+                                    idUser,
+                                    true // El mensaje fue enviado por el usuario actual
+                                )
+                            )
+                            chatAdapter.notifyItemInserted(chatMessages.size - 1)
+                            recyclerView.scrollToPosition(chatMessages.size - 1)
                         }
                     }
-
                 }
+
                 if (chatsResponse.isSuccessful && GrupsChatResponse.isSuccessful) {
                     val GrupsChat = GrupsChatResponse.body()
-
-                    // Aquí puedes procesar los datos obtenidos y crear la lista de chatMessages
-                    val chatMessages = mutableListOf<ChatMessage>()
 
                     GrupsChat?.forEach { chat ->
                         chatMessages.add(
@@ -97,4 +104,5 @@ class ChatActivity : AppCompatActivity() {
         }
     }
 }
+
 data class ChatMessage(val content: String, val senderId: Int, val sentByCurrentUser: Boolean)
