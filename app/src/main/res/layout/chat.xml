@@ -5,15 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <!-- activity_chat.xml -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            app:menu="@menu/menu_toolbar"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title=""
+            tools:layout_editor_absoluteX="-205dp">
 
+            <!-- Logo de la Toolbar -->
+            <ImageView
+                android:id="@+id/logoImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="75dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/logocircuitblanco"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.appcompat.widget.Toolbar>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewChat"
-            android:layout_width="407dp"
-            android:layout_height="664dp"
+            android:layout_width="408dp"
+            android:layout_height="590dp"
             android:layout_marginStart="3dp"
+            android:layout_marginTop="60dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="13dp"
             app:layout_constraintBottom_toTopOf="@+id/button3"

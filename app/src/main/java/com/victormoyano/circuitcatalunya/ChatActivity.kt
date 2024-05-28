@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -94,6 +96,7 @@ class ChatActivity : AppCompatActivity() {
 
                     chatAdapter = DinsChatAdapter(chatMessages, userId, idGrup)
                     recyclerView.adapter = chatAdapter
+                    recyclerView.scrollToPosition(chatMessages.size - 1)
                 } else {
                     // Manejar la respuesta fallida, si es necesario
                 }
@@ -102,6 +105,11 @@ class ChatActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu_toolbar, menu)
+        return true
     }
 }
 
