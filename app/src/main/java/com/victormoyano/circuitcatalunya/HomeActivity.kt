@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -14,6 +15,22 @@ import com.google.android.material.tabs.TabLayout
 import com.victormoyano.circuitcatalunya.databinding.HomeBinding
 
 class HomeActivity : AppCompatActivity() {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu_toolbar, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.configuracio -> {
+                val intent = Intent(this, ConfiguracioActivity::class.java)
+                startActivity(intent)
+
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
     companion object {
         private const val EXTRA_ID_LOGAT = "extra_id_logat"
         fun newIntent(context: Context, idLogat: Int): Intent {
@@ -80,9 +97,6 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.menu_toolbar, menu)
-        return true
-    }
+
+
 }

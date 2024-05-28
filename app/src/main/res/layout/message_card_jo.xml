@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="800px"
     android:layout_height="300px"
     android:layout_marginLeft="95dp"
     android:layout_marginTop="15dp"
-    android:backgroundTint="@color/design_default_color_primary_variant"
+    android:backgroundTint="#BFF9635C"
 
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
@@ -51,7 +50,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/missatge"/>
+            app:layout_constraintTop_toBottomOf="@id/missatge" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

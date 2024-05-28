@@ -22,7 +22,7 @@ class ChatAdapter(private val context: Context, var response: List<Chat>, privat
     RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.reparacionscard, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.cards_grups_chat, parent, false)
         return ViewHolder(view)
     }
 
@@ -36,16 +36,16 @@ class ChatAdapter(private val context: Context, var response: List<Chat>, privat
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val messageTextView: TextView = itemView.findViewById(R.id.titleTextView)
-        private val idTextView: TextView = itemView.findViewById(R.id.subtitleTextView)
-        private val infoImageView: View = itemView.findViewById(R.id.info)
+        private val messageTextView: TextView = itemView.findViewById(R.id.titolGrup)
+        private val idTextView: TextView = itemView.findViewById(R.id.ultim_miss)
+        private  val card_grups: View = itemView.findViewById(R.id.card_grups)
 
         fun bindData(group: Grups) {
-            messageTextView.text = "Grupo: ${group.id_grupo}"
+            messageTextView.text = "Grup: ${group.id_grupo}"
             idTextView.text = "${group.ultimo_mensaje}"
 
             // Asignar el clic del icono a la actividad del chat
-            infoImageView.setOnClickListener {
+            card_grups.setOnClickListener {
                 val intent = Intent(context, ChatActivity::class.java)
                 intent.putExtra("idGrupo", group.id_grupo)
                 intent.putExtra("idRebut", group.id_recibido) // Pasar el id_rebut al ChatActivity
