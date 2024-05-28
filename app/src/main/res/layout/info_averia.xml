@@ -7,35 +7,34 @@
     android:id="@+id/root"
     tools:context=".HomeActivity">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        app:menu="@menu/menu_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title=""
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <!-- Logo de la Toolbar -->
+        <ImageView
+            android:id="@+id/logoImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/logocircuitblanco"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title=""
-            tools:layout_editor_absoluteX="-205dp">
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="75dp"
+            android:layout_marginBottom="8dp" />
 
-            <!-- Logo de la Toolbar -->
-            <ImageView
-                android:id="@+id/logoImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="75dp"
-                android:layout_marginBottom="8dp"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/logocircuitblanco"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.appcompat.widget.Toolbar>
-
+    </androidx.appcompat.widget.Toolbar>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"

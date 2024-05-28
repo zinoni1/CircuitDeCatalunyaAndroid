@@ -14,9 +14,12 @@ import com.victormoyano.circuitcatalunya.R
 import com.victormoyano.circuitcatalunya.api.RetrofitConnection
 import com.victormoyano.circuitcatalunya.models.Chat
 import com.victormoyano.circuitcatalunya.models.Grups
+import com.victormoyano.circuitcatalunya.models.UsersGrups
+import com.victormoyano.circuitcatalunya.models.UsersLista
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class ChatAdapter(private val context: Context, var response: List<Chat>, private val groups: List<Grups>) :
     RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
@@ -41,7 +44,24 @@ class ChatAdapter(private val context: Context, var response: List<Chat>, privat
         private  val card_grups: View = itemView.findViewById(R.id.card_grups)
 
         fun bindData(group: Grups) {
-            messageTextView.text = "Grup: ${group.id_grupo}"
+
+            CoroutineScope(Dispatchers.Main).launch {
+                val idUser = HomeActivity.IdLogatHolder.getIdLogat()
+                val usersGrup: List<UsersGrups> = RetrofitConnection.service.getusersGrup(idUser)
+                val users: Response<List<UsersLista>> = RetrofitConnection.service.getUsers()
+                val iterator = usersGrup.iterator()
+                while (iterator.hasNext()) {
+                    val user = iterator.next()
+                    if (user.id_grupo == group.id_recibido ) {
+                        for(usuari in users.body()!!){
+                            if(user.id_usuario == usuari.id){
+                                messageTextView.text = usuari.name
+                                break
+                            }
+                    }
+                }
+            }
+
             idTextView.text = "${group.ultimo_mensaje}"
 
             // Asignar el clic del icono a la actividad del chat
@@ -53,4 +73,4 @@ class ChatAdapter(private val context: Context, var response: List<Chat>, privat
             }
             }
         }
-}
+}}

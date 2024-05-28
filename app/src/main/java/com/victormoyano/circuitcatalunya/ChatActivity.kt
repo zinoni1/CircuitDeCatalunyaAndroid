@@ -1,28 +1,22 @@
 package com.victormoyano.circuitcatalunya
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.victormoyano.circuitcatalunya.adapters.ChatAdapter
 import com.victormoyano.circuitcatalunya.adapters.DinsChatAdapter
 import com.victormoyano.circuitcatalunya.api.RetrofitConnection
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
 class ChatActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
@@ -39,13 +33,11 @@ class ChatActivity : AppCompatActivity() {
         val userId = HomeActivity.IdLogatHolder.getIdLogat() // Obtener el ID del usuario actual
 
         CoroutineScope(Dispatchers.Main).launch {
-
             val enviarBtn: Button = findViewById(R.id.button3)
             val missatge: EditText = findViewById(R.id.editTextText)
 
             try {
                 val idUser = HomeActivity.IdLogatHolder.getIdLogat()
-                val chatsResponse = RetrofitConnection.service.getChats(idUser)
                 val Rebut = intent.getIntExtra("idRebut", 0)
                 val idGrup = intent.getIntExtra("idGrupo", 0)
                 Log.d("ChatActivity", "idGrup: $idGrup")
@@ -54,7 +46,6 @@ class ChatActivity : AppCompatActivity() {
 
                 enviarBtn.setOnClickListener {
                     val message = missatge.text.toString()
-                    Log.d("ChatActivity", "Missatge no enviat: $message")
                     if (message.isNotEmpty()) {
                         val chatMessage = com.victormoyano.circuitcatalunya.adapters.ChatMessage(
                             id_grupo = idGrup,
@@ -77,11 +68,14 @@ class ChatActivity : AppCompatActivity() {
                             )
                             chatAdapter.notifyItemInserted(chatMessages.size - 1)
                             recyclerView.scrollToPosition(chatMessages.size - 1)
+
+                            // Set result to inform that new message is sent
+                            setResult(Activity.RESULT_OK)
                         }
                     }
                 }
 
-                if (chatsResponse.isSuccessful && GrupsChatResponse.isSuccessful) {
+                if (GrupsChatResponse.isSuccessful) {
                     val GrupsChat = GrupsChatResponse.body()
 
                     GrupsChat?.forEach { chat ->
@@ -106,6 +100,13 @@ class ChatActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onBackPressed() {
+        // Set result to inform that user is going back
+        setResult(Activity.RESULT_OK)
+        super.onBackPressed()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu_toolbar, menu)
