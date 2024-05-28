@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 olvidado = findViewById(R.id.forgotPasswordTextView)
         olvidado.setOnClickListener {
-            val intent = Intent(this, Averia_sinlogin::class.java)
+            val intent = Intent(this, RecuperarContrasenya::class.java)
             startActivity(intent)
         }
 

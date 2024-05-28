@@ -8,6 +8,7 @@ import com.victormoyano.circuitcatalunya.models.Grups
 import com.victormoyano.circuitcatalunya.models.Sectores
 import com.victormoyano.circuitcatalunya.models.TipoAverias
 import com.victormoyano.circuitcatalunya.models.Users
+import com.victormoyano.circuitcatalunya.models.UsersGrups
 import com.victormoyano.circuitcatalunya.models.UsersLista
 import com.victormoyano.circuitcatalunya.models.Zonas
 import okhttp3.MultipartBody
@@ -59,6 +60,23 @@ interface RetrofitEndPoints {
     suspend fun getChatGrupList(
         @Path("idGrup") idGrup: Int,
         @Path("id") id: Int): List<Chat>
+
+    @GET("get-ultim-grup/{id}")
+    suspend fun getNouGrup(
+        @Path("id") id: Int): Int
+    @GET("get-users-grup/{id}")
+    suspend fun getusersGrup(
+        @Path("id") id: Int): List<UsersGrups>
+
+
+    @PUT("change-password/{id}/{pass}")
+    suspend fun changePass(
+        @Path("id") id: Int,
+        @Path("pass") password: String): Int
+
+    @GET("get-users-sinchat/{id}")
+    suspend fun getUsersSinChat(
+        @Path("id") id: Int): List<Int>
 
     @POST("enviar-miss-android")
     suspend fun enviarMiss(@Body chat: ChatMessage): Response<Chat>

@@ -36,6 +36,7 @@
         <activity android:name=".Averia_sinlogin"/>
         <activity android:name=".InfoAveria"/>
         <activity android:name=".ChatActivity"/>
+        <activity android:name=".AddGrupo"/>
 
     </application>
 
