@@ -1,7 +1,11 @@
 package com.victormoyano.circuitcatalunya
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +17,24 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class InfoAveria : AppCompatActivity() {
-
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu_toolbar, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.d("InfoAveria", "Configuració0")
+        return when (item.itemId) {
+            R.id.configuracio2 -> {
+                Log.d("InfoAveria", "Configuració")
+                val intent = Intent(this, ConfiguracioActivity::class.java)
+                startActivity(intent)
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
     private lateinit var problemTextView: TextView
     private lateinit var descriptionTextView: TextView
     private lateinit var imageView: ImageView
@@ -48,4 +69,5 @@ class InfoAveria : AppCompatActivity() {
             // Actualiza aquí los demás elementos de la interfaz de usuario
         }
     }
+
 }
