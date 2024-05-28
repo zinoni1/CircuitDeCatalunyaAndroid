@@ -22,8 +22,8 @@
 
     <View
         android:id="@+id/mid_panel"
-        android:layout_width="378dp"
-        android:layout_height="184dp"
+        android:layout_width="349dp"
+        android:layout_height="193dp"
 
         android:layout_marginStart="20dp"
         android:layout_marginEnd="15dp"
@@ -38,8 +38,8 @@
 
     <View
         android:id="@+id/bottom_panel"
-        android:layout_width="377dp"
-        android:layout_height="276dp"
+        android:layout_width="346dp"
+        android:layout_height="243dp"
 
         android:layout_marginStart="20dp"
         android:layout_marginTop="11dp"
@@ -48,7 +48,7 @@
         android:background="@drawable/stats_rectangle_blanc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mid_panel"
         app:layout_constraintVertical_bias="0.0" />
@@ -116,9 +116,9 @@
         android:layout_width="168dp"
         android:layout_height="118dp"
         android:backgroundTint="@color/red_flojo"
+        android:gravity="bottom|center_horizontal"
         android:text="Reparacions pendents"
         android:textSize="8dp"
-        android:gravity="bottom|center_horizontal"
         app:cornerRadius="?attr/dialogPreferredPadding"
         app:layout_constraintBottom_toTopOf="@+id/mid_panel"
         app:layout_constraintEnd_toEndOf="parent"
@@ -161,6 +161,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.303" />
+
+    <TextView
+        android:id="@+id/tvPendents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="45dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/mid_panel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48000002" />
+
+    <TextView
+        android:id="@+id/tvProgramades"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="85dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/mid_panel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48000002" />
+
+    <TextView
+        android:id="@+id/tvUrgents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="157dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/mid_panel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.932"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

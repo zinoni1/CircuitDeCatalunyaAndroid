@@ -1,10 +1,17 @@
 package com.victormoyano.circuitcatalunya
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import com.victormoyano.circuitcatalunya.api.RetrofitConnection
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,9 +41,26 @@ class statsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stats, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_stats, container, false)
 
+        // Obtiene una referencia al TextView
+        val textView5: TextView = view.findViewById(R.id.tvPendents)
+        val textView6: TextView = view.findViewById(R.id.tvProgramades)
+        val textView7: TextView = view.findViewById(R.id.tvUrgents)
+        CoroutineScope(Dispatchers.Main).launch {
+            val idLogat = HomeActivity.IdLogatHolder.getIdLogat()
+            if (idLogat != null) {
+                    val averiasPendientes: Int = RetrofitConnection.service.getAveriesPendents()
+                    textView5.text = averiasPendientes.toString()
+                    val averiasProgramades: Int = RetrofitConnection.service.getAveriesProgramades()
+                    textView6.text = averiasProgramades.toString()
+                    val averiasUrgents: Int = RetrofitConnection.service.getAveriesUrgents()
+                    textView7.text = averiasUrgents.toString()
+            }
+        }
+
+        return view
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of
