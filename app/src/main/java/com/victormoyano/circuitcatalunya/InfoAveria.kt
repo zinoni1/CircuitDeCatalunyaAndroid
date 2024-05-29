@@ -1,7 +1,9 @@
     package com.victormoyano.circuitcatalunya
 
+    import android.content.Intent
     import android.os.Bundle
     import android.util.Log
+    import android.widget.Button
     import android.widget.ImageButton
     import android.widget.ImageView
     import android.widget.TextView
@@ -18,7 +20,7 @@
         private lateinit var problemTextView: TextView
         private lateinit var descriptionTextView: TextView
         private lateinit var dataInicioTextView: TextView
-        private lateinit var dataFinTextView: TextView
+        //private lateinit var dataFinTextView: TextView
         private lateinit var prioritatTextView: TextView
         private lateinit var zonesTextView: TextView
         private lateinit var tipusMantenimentTextView: TextView
@@ -43,7 +45,29 @@
             val averiaId = intent.getIntExtra("averiaId", 0)
             Log.d("InfoAveria", "Averia ID: $averiaId")
 
-            CoroutineScope(Dispatchers.Main).launch {
+                CoroutineScope(Dispatchers.Main).launch {
+                    val btnacabada = findViewById<Button>(R.id.btnEnviar)
+                    val btnacabada2 = findViewById<Button>(R.id.btnAtras)
+
+                    btnacabada2.setOnClickListener {
+                        val intent = Intent(this@InfoAveria, HomeActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    btnacabada.setOnClickListener {
+                        CoroutineScope(Dispatchers.Main).launch {
+                            val editFecha = RetrofitConnection.service.editFecha(averiaId)
+                            if (editFecha == 1) {
+                                val intent = Intent(this@InfoAveria, HomeActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                // Muestra un mensaje de error
+                                Log.e("InfoAveria", "Error12345")
+                            }
+                        }
+
+                    }
                 val response = RetrofitConnection.service.getAveria(averiaId)
                 if (response.isSuccessful) {
                     val averia = response.body()?.firstOrNull()
@@ -59,7 +83,7 @@
                 problemTextView.text = it.Incidencia
                 descriptionTextView.text = it.descripcion
                 dataInicioTextView.text = it.data_inicio
-                dataFinTextView.text = it.data_fin ?: "No definida"
+                //dataFinTextView.text = it.data_fin ?: "No definida"
                 prioritatTextView.text = it.prioridad
                 zonesTextView.text = it.zona_id.toString() // Asumiendo que `zona_id` es un identificador numérico
                 tipusMantenimentTextView.text = it.tipo_averias_id.toString() // Asumiendo que `tipo_averias_id` es un identificador numérico
