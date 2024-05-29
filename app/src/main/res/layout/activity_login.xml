@@ -44,15 +44,15 @@
             android:id="@+id/titleLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="INICIAR SESIÓN"
+            android:layout_marginTop="40dp"
+            android:text="INICIAR SESSIÓ"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/usernameEditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintBottom_toTopOf="@id/usernameEditText"
-            android:layout_marginTop="40dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/usernameEditText"
@@ -81,24 +81,24 @@
             android:id="@+id/loginButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Iniciar Sesión"
+            android:layout_marginTop="36dp"
             android:backgroundTint="@color/red"
+            android:text="Iniciar Sessió "
             android:textColor="@android:color/white"
-            app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="36dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
 
         <TextView
             android:id="@+id/forgotPasswordTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¿HAS OLVIDADO TU CONTRASEÑA?"
+            android:layout_marginTop="14dp"
+            android:text="¿ HAS OBLIDAT LA TEVA CONTRASENYA?"
             android:textSize="10sp"
-            app:layout_constraintTop_toBottomOf="@id/loginButton"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="14dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/loginButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
