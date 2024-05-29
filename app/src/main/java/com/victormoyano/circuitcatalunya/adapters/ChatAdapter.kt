@@ -52,13 +52,12 @@ class ChatAdapter(private val context: Context, var response: List<Chat>, privat
                 val iterator = usersGrup.iterator()
                 while (iterator.hasNext()) {
                     val user = iterator.next()
-                    if (user.id_grupo == group.id_recibido ) {
                         for(usuari in users.body()!!){
                             if(user.id_usuario == usuari.id){
                                 messageTextView.text = usuari.name
                                 break
                             }
-                    }
+
                 }
             }
 
