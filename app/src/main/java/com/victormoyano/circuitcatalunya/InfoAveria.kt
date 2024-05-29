@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -52,6 +53,28 @@ class InfoAveria : AppCompatActivity() {
         val averiaId = intent.getIntExtra("averiaId", 0)
         Log.d("InfoAveria", "Averia ID: $averiaId")
         CoroutineScope(Dispatchers.Main).launch {
+            val btnacabada = findViewById<Button>(R.id.btnEnviar)
+            val btnacabada2 = findViewById<Button>(R.id.btnAtras)
+
+            btnacabada2.setOnClickListener {
+                val intent = Intent(this@InfoAveria, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            btnacabada.setOnClickListener {
+                CoroutineScope(Dispatchers.Main).launch {
+                    val editFecha = RetrofitConnection.service.editFecha(averiaId)
+                    if (editFecha == 1) {
+                        val intent = Intent(this@InfoAveria, HomeActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        // Muestra un mensaje de error
+                        Log.e("InfoAveria", "Error12345")
+                    }
+                }
+
+            }
             val response = RetrofitConnection.service.getAveria(averiaId)
             if (response.isSuccessful) {
                 val averia = response.body()?.firstOrNull() // Obtiene el primer elemento de la lista, si existe
