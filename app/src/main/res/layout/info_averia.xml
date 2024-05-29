@@ -64,38 +64,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="DESCRIPCION..." />
+            android:hint="DESCRIPCIÓ..." />
 
         <TextView
             android:id="@+id/dataInicio"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Data Inicio" />
+            android:hint="DATA INICI" />
 
         <TextView
             android:id="@+id/TipusManteniment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:hint="TIPUS"/>
 
         <TextView
             android:id="@+id/Zones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:hint="ZONA"/>
 
         <TextView
             android:id="@+id/Asignar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:hint="TECNIC ASIGNAT"/>
 
         <TextView
             android:id="@+id/Prioritat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:hint="PRIORITAT" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -116,7 +120,7 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
-                android:text="Acabada" />
+                android:text="Finalitzada" />
 
             <Button
                 android:id="@+id/btnAtras"

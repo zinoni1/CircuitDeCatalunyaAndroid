@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="DESCRIPCION..." />
+        android:hint="DESCRIPCIÓ..." />
 
     <Spinner
         android:id="@+id/TipusManteniment"

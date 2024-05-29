@@ -20,7 +20,6 @@
         private lateinit var problemTextView: TextView
         private lateinit var descriptionTextView: TextView
         private lateinit var dataInicioTextView: TextView
-        //private lateinit var dataFinTextView: TextView
         private lateinit var prioritatTextView: TextView
         private lateinit var zonesTextView: TextView
         private lateinit var tipusMantenimentTextView: TextView
