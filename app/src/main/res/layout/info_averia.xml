@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/root"
-    tools:context=".HomeActivity">
+    tools:context=".InfoAveria">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -116,7 +116,7 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
-                android:text="Enviar"/>
+                android:text="Acabada" />
 
             <Button
                 android:id="@+id/btnAtras"
@@ -124,7 +124,7 @@
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/grey"
-                android:text="Atrás"/>
+                android:text="Tornar" />
         </LinearLayout>
 
     </LinearLayout>

@@ -77,6 +77,15 @@ interface RetrofitEndPoints {
     @GET("get-users-sinchat/{id}")
     suspend fun getUsersSinChat(
         @Path("id") id: Int): List<Int>
+    @PUT("edit-fecha/{id}")
+    suspend fun editFecha(
+        @Path("id") id: Int): Int
+    @GET("averias-pendents")
+    suspend fun getAveriesPendents(): Int
+    @GET("averias-programades")
+    suspend fun getAveriesProgramades(): Int
+    @GET("averias-urgents")
+    suspend fun getAveriesUrgents(): Int
 
     @POST("enviar-miss-android")
     suspend fun enviarMiss(@Body chat: ChatMessage): Response<Chat>
